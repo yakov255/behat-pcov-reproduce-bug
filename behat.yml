@@ -1,0 +1,18 @@
+default:
+  extensions:
+    DVDoug\Behat\CodeCoverage\Extension:
+      branchAndPathCoverage: false # don't use xdebug
+      filter:
+        include:
+          directories:
+            'src': ~
+      reports:
+        text:
+          showOnlySummary: true
+          showColors: true
+  suites:
+    default:
+      paths:
+        - "%paths.base%/features"
+      contexts:
+        - FeatureContext

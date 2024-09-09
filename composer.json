@@ -1,0 +1,5 @@
+{
+    "require": {
+        "dvdoug/behat-code-coverage": "^5.3"
+    }
+}

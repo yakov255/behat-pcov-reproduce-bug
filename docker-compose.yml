@@ -1,0 +1,12 @@
+services:
+  php:
+    build:
+      context: .
+    container_name: "behat-min"
+    volumes:
+      - .:/web
+      - "composer_cache:/root/.composer"
+
+volumes:
+  composer_cache:
+    name: raketa_composer_cache
