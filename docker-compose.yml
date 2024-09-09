@@ -6,6 +6,10 @@ services:
     volumes:
       - .:/web
       - "composer_cache:/root/.composer"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      PHP_IDE_CONFIG: "serverName=localhost"
 
 volumes:
   composer_cache:

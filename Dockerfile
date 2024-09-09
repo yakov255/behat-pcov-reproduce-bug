@@ -11,12 +11,6 @@ RUN pecl install xdebug && \
     docker-php-ext-enable xdebug && \
     mkdir /var/log/xdebug
 
-# Configure xdebug
-RUN <<INI cat >> /usr/local/etc/php/conf.d/xdebug.ini
-    xdebug.mode=debug,develop
-    xdebug.start_with_request=no
-INI
-
 ## composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN mkdir /var/www/.composer/ && chown www-data:www-data /var/www/.composer/
@@ -34,3 +28,11 @@ RUN apt-get update && apt-get install -y \
     && pecl install pcov \
     && docker-php-ext-enable pcov \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Configure xdebug
+RUN <<INI cat >> /usr/local/etc/php/conf.d/xdebug.ini
+    xdebug.mode=debug,develop
+    xdebug.discover_client_host=yes
+    xdebug.client_port=9000
+    xdebug.client_host=host.docker.internal
+INI
